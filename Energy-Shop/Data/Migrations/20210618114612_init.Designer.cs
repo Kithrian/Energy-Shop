@@ -3,14 +3,16 @@ using System;
 using Energy_Shop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Energy_Shop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210618114612_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,56 +88,9 @@ namespace Energy_Shop.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Anzahl")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Bez")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("GeschmackId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("MarkeId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Preis")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("GeschmackId");
-
-                    b.HasIndex("MarkeId");
-
-                    b.ToTable("Energydrinks");
-                });
-
-            modelBuilder.Entity("Energy_Shop.Models.Geschmack", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Bez")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Geschmack");
-                });
-
-            modelBuilder.Entity("Energy_Shop.Models.Marke", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Bez")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Marke");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -371,21 +326,6 @@ namespace Energy_Shop.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Energy_Shop.Models.Energydrinks", b =>
-                {
-                    b.HasOne("Energy_Shop.Models.Geschmack", "Geschmack")
-                        .WithMany()
-                        .HasForeignKey("GeschmackId");
-
-                    b.HasOne("Energy_Shop.Models.Marke", "Marke")
-                        .WithMany()
-                        .HasForeignKey("MarkeId");
-
-                    b.Navigation("Geschmack");
-
-                    b.Navigation("Marke");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

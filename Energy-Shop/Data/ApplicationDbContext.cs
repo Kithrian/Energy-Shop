@@ -17,5 +17,11 @@ namespace Energy_Shop.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        public DbSet<Energydrinks> Energydrinks { get; set; }
+
+        public DbSet<Geschmack> Geschmack { get; set; }
+
+        public DbSet<Marke> Marke { get; set; }
     }
 }
